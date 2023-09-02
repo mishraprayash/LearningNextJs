@@ -1,0 +1,1 @@
+Simple NextJS Implementation and Understanding the Directory Structure, workflow and so on.
