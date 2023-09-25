@@ -5,7 +5,7 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const isPubic = (path === "/") || (path === "/login") || (path === "/signup");
+  const isPubic = (path === "/") || (path === "/login") || (path === "/signup") || (path==="/forgotpassword") || (path=="/resetpassword");
   // accesing a token from cookies
   const token = request.cookies.get("token")?.value || "";
   // if the path is pulbic and token is already present in the cookie then it means that the user is logged in.
@@ -24,5 +24,5 @@ export function middleware(request: NextRequest) {
 // this is a method by which we can pass the pages on which we want our middleware to work.
 // we can also use regex pattern here to match the different URLs.
 export const config = {
-  matcher: ["/", "/login", "/signup", "/profile","/profile/:path*"],
+  matcher: ["/", "/login", "/signup", "/profile","/profile/:path*","/verifyemail/:path*", "/forgotpassword","/forgotpassword/:path*","/resetpassword", "/resetpassword/:path*"],
 };

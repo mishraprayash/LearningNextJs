@@ -35,7 +35,7 @@ export default function signupPage() {
       })
       if(response.ok){
         const data = await response.json();
-        router.push('/login')
+        router.push('/profile')
       }else{
         const error = await response.json();
         console.log(error);
@@ -104,7 +104,7 @@ export default function signupPage() {
         type="submit"
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4"
       >
-        {buttonDisabled ? "No SignUp" : "SignUp"}
+        {buttonDisabled ? "Fill all details" : "SignUp"}
       </button>
       <Link
         href="/login"

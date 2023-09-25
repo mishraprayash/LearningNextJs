@@ -7,16 +7,18 @@ import jwt from "jsonwebtoken";
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { email, password } = reqBody;
-    console.log(reqBody);
+    const {email, password} = reqBody;
+    console.log("From login API",reqBody);
     const user = await User.findOne({ email: email });
+    console.log(user)
     if (!user) {
-      return NextResponse.json({ message: "User not Found" }, { status: 400 });
+      return NextResponse.json({ message: "Invalid Email or Password" }, { status: 400 });
     }
     const isMatch = await bcryptjs.compare(password, user.password);
+    console.log(isMatch);
     if (!isMatch) {
       return NextResponse.json(
-        { message: "Invalid Password" },
+        { message: "Invalid Email or Password" },
         { status: 400 }
       );
     }
@@ -36,7 +38,6 @@ export async function POST(request: NextRequest) {
     });
     // setting a cookies
     response.cookies.set("token", token, { httpOnly: true });
-
     return response;
 
   } catch (error: any) {

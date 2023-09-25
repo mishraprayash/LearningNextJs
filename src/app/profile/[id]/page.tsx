@@ -1,4 +1,8 @@
+import {getDataFromToken} from "@/helpers/getDatafromToken"
 export default function userProfile({params}: any){
+
+
+
     return (
         <div className="flex flex-col  items-center justify-center min-h-screen py-2">
             <h1 className="text-black text-2xl mb-5">Profile</h1>

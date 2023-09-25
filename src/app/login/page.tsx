@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
+
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { chownSync } from "fs";
 
 export default function loginPage() {
   const router = useRouter();
@@ -21,23 +23,32 @@ export default function loginPage() {
         return new Error("Please fill in the email and password");
         setLoading(false);
       }
-      const response = await fetch("api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      if(response.ok) {
-        const data = await response.json();
-        if(data.success){
-            router.push('/profile');
-        }
-      }
-      else{
-        const error = await response.json();
-        console.log(error);
-        
+      // const response = await fetch("/api/users/login", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(user),
+      // });
+      // if(response.ok) {
+      //   console.log(JSON.stringify(user));
+      //   const data = await response.json();
+      //   if(data.success){
+      //       router.push('/profile');
+      //   }
+      // }
+      // else{
+      //   const error = await response.json();
+      //   console.log(error);
+
+      // }
+
+      // be careful while passing login credentials.
+      // here in this creating a useState hook i already created an object of email and password so while passing user here, we dont need curly braces.
+      const response = await axios.post("/api/users/login", user);
+      if (response.data.success) {
+        console.log(response.data.message);
+        router.push('/profile');
       }
     } catch (error: any) {
       console.log("Login failed: " + error.message);
@@ -55,7 +66,7 @@ export default function loginPage() {
   }, [user]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-red-300">
       <h1 className="text-blue-900	text-2xl mb-4">
         {loading ? "Processing.." : "Login"}
       </h1>
@@ -94,6 +105,12 @@ export default function loginPage() {
         className="bg-gray-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full mt-4"
       >
         SignUp
+      </Link>
+      <Link
+        href="/forgotpassword"
+        className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg m-3"
+      >
+        Forgot Password ?
       </Link>
     </div>
   );
