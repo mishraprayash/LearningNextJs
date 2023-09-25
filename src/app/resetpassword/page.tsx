@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
 
-export default function resetPassword() {
+export default function ResetPassword() {
   const router = useRouter();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -17,8 +17,8 @@ export default function resetPassword() {
         token
       });
       if (response) {
-        router.push("/profile");
         console.log("Password Changed Successfully");
+        router.push('/login')
       }
     } catch (error: any) {
       console.log(error.response.data);

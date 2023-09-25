@@ -5,7 +5,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { chownSync } from "fs";
 
 export default function loginPage() {
   const router = useRouter();

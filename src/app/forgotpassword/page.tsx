@@ -1,9 +1,9 @@
 "use client";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import Router from "next/navigation";
 
-export default function forgotPassword() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [buttonDisable, setButtonDisable] = useState(true);
   const [response, setResponse] = useState(false);
