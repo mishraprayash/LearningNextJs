@@ -5,7 +5,7 @@
 import { NextRequest } from "next/server";
 import jwt from 'jsonwebtoken';
 
-export const getDataFromToken = async (request:NextRequest)=>
+export const getDataFromToken = (request:NextRequest)=>
 {
     try {
         // acessing the token 
@@ -16,7 +16,6 @@ export const getDataFromToken = async (request:NextRequest)=>
         // returning the decoded token id
         return decodedToken.id;
     } catch (error:any) {
-        console.log("error in decoding token",error)
-        throw new Error(error);
+        throw new Error(error.message);
     }
 }

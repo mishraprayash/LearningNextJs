@@ -6,7 +6,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
-export default function verifyEmailPage() {
+export default function VerifyEmailPage() {
   const [verified, setVerified] = useState(false);
   const [token, setToken] = useState("");
   const [error, setError] = useState(false);

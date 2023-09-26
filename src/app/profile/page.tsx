@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-export default function profilePage() {
+export default function ProfilePage() {
   const router = useRouter();
 
   const onLogout = async () => {
