@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 
 export async function POST(request: NextRequest) {
   try {
+    connectDB();
     const reqBody = await request.json();
     const {email, password} = reqBody;
     console.log("From login API",reqBody);
