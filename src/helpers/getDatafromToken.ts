@@ -12,7 +12,7 @@ export const getDataFromToken = async (request:NextRequest)=>
         const token = request.cookies.get('token')?.value || '';
         // decoding the token using the TOKEN_SECRET
 
-        const decodedToken:any = await jwt.verify(token,process.env.TOKEN_SECRET!)
+        const decodedToken:any = jwt.verify(token,process.env.TOKEN_SECRET!)
         // returning the decoded token id
         return decodedToken.id;
     } catch (error:any) {
