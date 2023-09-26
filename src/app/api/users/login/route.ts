@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
     const {email, password} = reqBody;
     console.log("From login API",reqBody);
     const user = await User.findOne({ email: email });
-    console.log(user)
     if (!user) {
       return NextResponse.json({ message: "Invalid Email or Password" }, { status: 400 });
     }

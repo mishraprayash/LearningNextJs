@@ -23,19 +23,14 @@ export default function profilePage() {
   useEffect(() => {
     const getUserDetails = async () => {
       try {
-        // get request to a api
+        // get request to a api to fetch userinfo
+        const response = await fetch("/api/users/me");
+        const userData = await response.json();
+        setUsername(userData.data.username);
 
-        // const response = await fetch("/api/users/me");
-        // const userData = await response.json();
-        // setEmail(userData.data.email)
-        // setUsername(userData.data.username);
-        const response = await axios.get("/api/users/me");
-        // double data.data because we are also using data attribute for storing the info in the object!!
-        if (response.status === 200) {
-          setUsername(response.data.data.username);
-        }
+  
       } catch (error: any) {
-        console.log(error);
+        console.log("Error from here", error.message);
       }
     };
     getUserDetails();

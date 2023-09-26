@@ -47,9 +47,13 @@ export default function loginPage() {
       const response = await axios.post("/api/users/login", user);
       if (response.data.success) {
         console.log(response.data.message);
-        router.push('/profile');
+        router.push("/profile");
       }
     } catch (error: any) {
+      setUser({
+        email: "",
+        password: "",
+      });
       console.log("Login failed: " + error.message);
     } finally {
       setLoading(false);
